@@ -1,11 +1,10 @@
-# Ejercicio class JS
+# POO JS
 
-Este ejercicio fue realizado como práctica del funcionamiento de class en
-JavaScript
+Este proyecto surge para ser armado junto a los alumnos durante las clases de JavaScript Avanzado dictadas en Educación IT.
 
 ## Conceptos aplicados
 
 - [x] Renderizado condicional
 - [x] Objeto window
-- [x] Cominucación entre archivos/clases
+- [x] Comunicación entre archivos/clases
 - [x] Delegación de Eventos
