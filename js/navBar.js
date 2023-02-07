@@ -1,3 +1,5 @@
+import { CartIcon } from "./iconos.js";
+
 class NavBar {
   constructor(icon) {
     this.icon = icon;
@@ -14,4 +16,12 @@ class NavBar {
             </div>
             `;
   };
+}
+
+export function insertarNavBar(cantidadItems) {
+  const nav = document.getElementById("navBar");
+  const icon = CartIcon();
+
+  const navbar = new NavBar(icon);
+  nav.innerHTML = navbar.render(cantidadItems);
 }

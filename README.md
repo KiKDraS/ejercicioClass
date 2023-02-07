@@ -5,7 +5,7 @@ JavaScript
 
 ## Conceptos aplicados
 
+- [x] Módulos ES6
+- [x] Clases
 - [x] Renderizado condicional
-- [x] Objeto window
-- [x] Cominucación entre archivos/clases
 - [x] Delegación de Eventos

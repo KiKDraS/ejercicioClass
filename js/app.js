@@ -1,12 +1,13 @@
-//Elementos del DOM
-window.nav = document.getElementById("navBar");
-const section = document.getElementById("cartContainer");
+import { CartContainer } from "./cartContainer.js";
+import { insertarNavBar } from "./navBar.js";
 
-//Armar NavBar
-let cantidad = 0;
-window.navbar = new NavBar(CartIcon());
+(() => {
+  //Elementos del DOM
+  const section = document.getElementById("cartContainer");
 
-window.addEventListener("DOMContentLoaded", () => {
+  //Items en carrito
+  let cantidadItems = 0;
+
   //Initial State
   const items = [];
   const api = "https://course-api.com/react-useReducer-cart-project";
@@ -26,8 +27,8 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     //Insertar NavBar
-    cantidad = items.length;
-    nav.innerHTML = navbar.render(cantidad);
+    cantidadItems = items.length;
+    insertarNavBar(cantidadItems);
 
     //Insertar Carrito
     const cartContainer = new CartContainer(items);
@@ -35,18 +36,4 @@ window.addEventListener("DOMContentLoaded", () => {
     cartContainer.handleClick();
     section.innerHTML = cartContainer.render();
   })();
-});
-
-window.addEventListener("click", (e) => {
-  switch (e.target.dataset.id) {
-    case "btn-up":
-      cantidad++;
-      nav.innerHTML = navbar.render(cantidad);
-      break;
-
-    case "btn-down":
-      cantidad--;
-      nav.innerHTML = navbar.render(cantidad);
-      break;
-  }
-});
+})();

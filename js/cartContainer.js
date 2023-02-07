@@ -18,10 +18,14 @@
         => retorna el HTML que se inserta en el innerHTML del elemento de HTML para generar la vista del carrito. Genera una vista condicional en base a la existencia de elementos en el array items del Objeto CartContainer
 */
 
-class CartContainer {
+import { ChevronDown, ChevronUp } from "./iconos.js";
+import { insertarNavBar } from "./navBar.js";
+
+export class CartContainer {
   constructor(items) {
     this.items = items;
     this.total = 0;
+    this.cantidadItems = items.length;
   }
 
   renderItems = () => {
@@ -46,12 +50,21 @@ class CartContainer {
   handleClick = () => {
     document.addEventListener("click", ({ target }) => {
       const container = document.getElementById("cartContainer");
+
       if (target.classList.contains("up")) {
         const itemId = target.id.slice(3, target.id.length);
         const item = this.items.find((item) => item.id === itemId);
         const itemIndex = this.items.indexOf(item);
-        this.items[itemIndex].amount = item.amount + 1;
+        const nuevaCantidad = item.amount + 1;
+
+        this.items[itemIndex].amount = nuevaCantidad;
         this.calculateTotalPrice();
+
+        let cantidadItems = 0;
+        this.items.forEach((el) => (cantidadItems += el.amount));
+        this.cantidadItems = cantidadItems;
+
+        insertarNavBar(this.cantidadItems);
         container.innerHTML = this.render();
       } else if (target.classList.contains("down")) {
         const itemId = target.id.slice(5, target.id.length);
@@ -62,18 +75,40 @@ class CartContainer {
         if (nuevaCantidad === 0) {
           this.items.splice(itemIndex, 1);
           this.calculateTotalPrice();
+
+          let cantidadItems = 0;
+          this.items.forEach((el) => (cantidadItems += el.amount));
+          this.cantidadItems = cantidadItems;
+
+          insertarNavBar(this.cantidadItems);
           container.innerHTML = this.render();
         } else {
           this.items[itemIndex].amount = nuevaCantidad;
           this.calculateTotalPrice();
+
+          let cantidadItems = 0;
+          this.items.forEach((el) => (cantidadItems += el.amount));
+          this.cantidadItems = cantidadItems;
+
+          insertarNavBar(this.cantidadItems);
           container.innerHTML = this.render();
         }
+      } else if (target.id === "remove") {
+        const itemId = target.dataset.id;
+        this.items = this.items.filter((el) => el.id !== itemId);
+
+        let cantidadItems = 0;
+        this.items.forEach((el) => (cantidadItems += el.amount));
+        this.cantidadItems = cantidadItems;
+
+        insertarNavBar(this.cantidadItems);
+        container.innerHTML = this.render();
       } else if (target.id === "clear") {
         const borrar = confirm("¿Seguro que quiere eliminar todo el carrito?");
 
         if (borrar) {
           this.items = [];
-          window.nav.innerHTML = window.navbar.render(0);
+          insertarNavBar(0);
           container.innerHTML = this.render();
         } else {
           return;
@@ -136,7 +171,8 @@ class CartItem {
                   <h4 class="item-price">${this.price}</h4>
                   <button
                     id="remove"
-                    class="remove-btn">
+                    class="remove-btn"
+                    data-id=${this.id}>
                     remove
                   </button>
                 </div>

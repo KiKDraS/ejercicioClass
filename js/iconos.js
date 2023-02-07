@@ -1,4 +1,4 @@
-const CartIcon = () => {
+export const CartIcon = () => {
   return `<svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -16,7 +16,7 @@ const CartIcon = () => {
 
 //Se agregar id para poder identificar cada botón en particular.
 //La clase down se usa para la delegación de eventos
-const ChevronDown = (id, dataSet) => {
+export const ChevronDown = (id, dataSet) => {
   return `<svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -37,7 +37,7 @@ const ChevronDown = (id, dataSet) => {
 
 //Se agregar id para poder identificar cada botón en particular.
 //La clase up se usa para la delegación de eventos
-const ChevronUp = (id, dataSet) => {
+export const ChevronUp = (id, dataSet) => {
   return `<svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
