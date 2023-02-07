@@ -8,6 +8,4 @@ JavaScript Avanzado dictadas en Educación IT.
 - [x] Módulos ES6
 - [x] Clases
 - [x] Renderizado condicional
-- [x] Objeto window
-- [x] Comunicación entre archivos/clases
 - [x] Delegación de Eventos
